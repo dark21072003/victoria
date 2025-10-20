@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños Victoria 🎂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .name {
+            color: #764ba2;
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            color: #333;
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin: 30px 0;
+            text-align: justify;
+            text-align-last: center;
+        }
+
+        .highlight {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .balloons {
+            font-size: 3em;
+            margin: 20px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            position: absolute;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .music-note {
+            position: fixed;
+            font-size: 2em;
+            animation: musicFloat 4s ease-in-out infinite;
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        @keyframes musicFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+            }
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .play-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cake {
+            font-size: 4em;
+            margin: 20px 0;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="balloons">🎈🎊🎉</div>
+        <h1>¡Feliz Cumpleaños!</h1>
+        <div class="name">Victoria</div>
+        <div class="cake">🎂</div>
+        
+        <div class="message">
+            En este día tan especial quiero que sepas algo muy importante: 
+            <span class="highlight">no importa el tiempo que pase, no importa la distancia, 
+            no importa las circunstancias</span>, yo siempre estaré para ti. 
+            <br><br>
+            Eres una persona increíble y valoro cada momento que compartimos. 
+            Tu amistad es un regalo que aprecio cada día, y quiero que sepas que 
+            <span class="highlight">puedes contar conmigo en todo momento</span>.
+            <br><br>
+            Que este nuevo año de vida esté lleno de alegrías, sueños cumplidos, 
+            risas interminables y momentos inolvidables. ¡Te deseo lo mejor del mundo!
+            <br><br>
+            <span class="highlight">¡Feliz cumpleaños, Victoria! 🎉💜</span>
+        </div>
+
+        <button class="play-btn" onclick="toggleMusic()">🎵 Reproducir Música</button>
+        <audio id="bgMusic" loop>
+            <source src="wwd.mp3juice.blog - Canserbero feat LianaMalva - Te quiero (Versión Oficial) (320 KBps).mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        // Crear confetti
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#a29bfe'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(confetti);
+            }
+        }
+
+        // Crear notas musicales flotantes
+        function createMusicNotes() {
+            const notes = ['♪', '♫', '♬', '🎵', '🎶'];
+            for (let i = 0; i < 10; i++) {
+                const note = document.createElement('div');
+                note.className = 'music-note';
+                note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                note.style.left = Math.random() * 100 + 'vw';
+                note.style.top = Math.random() * 100 + 'vh';
+                note.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(note);
+            }
+        }
+
+        let isPlaying = false;
+        const audio = document.getElementById('bgMusic');
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                document.querySelector('.play-btn').textContent = '🎵 Reproducir Música';
+            } else {
+                audio.play();
+                document.querySelector('.play-btn').textContent = '⏸️ Pausar Música';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Inicializar efectos
+        createConfetti();
+        createMusicNotes();
+    </script>
+</body>
+</html>
